@@ -1,18 +1,28 @@
 const {addUser, selectUsers, deleteUser } = require("./module")
-
+const {token, check} = require("../settings/jwt")
 const resolvers = {
   
     Query: {
         users: () => selectUsers(),
-        User: {
+    },
+    User: {
             id: ( user ) => user.user_id
-        },
     },
     Mutation: {
      
         addUser: async(_, {username, password})=> {
-            const res = await addUser( username, password )
-            console.log(res)
+            try
+            {
+                const res = await addUser( username, password )
+                const gen_token = token( res.username )
+    
+                return gen_token
+              
+            }
+            catch ( err )
+            {
+                throw new Error("this username already taken")
+            }
         },
         deleteUser: async(id) =>
         {
