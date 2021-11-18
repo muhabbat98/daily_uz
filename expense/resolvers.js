@@ -21,16 +21,8 @@ const resolvers = {
    
     Mutation: {
      
-        addExpense: async(_, {name, image})=> {
-            try
-            {
-              
-              
-            }
-            catch ( err )
-            {
-                throw new Error("")
-            }
+        addExpense: async(_, {name, image},token)=> {
+           console.log(token, name, image)
         },
         deleteUser: async(id) =>
         {

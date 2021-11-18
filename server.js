@@ -1,8 +1,12 @@
 const { ApolloServer, gql } = require( 'apollo-server' );
-const users = require("./users")
+const users = require( "./users" )
+const expense = require("./expense")
+
 const PORT = process.env.PORT || 4000
+
 const modules = [
-  users
+  users,
+  expense
 ]
 const server = new ApolloServer( {
   modules, context: ( { req } ) =>
