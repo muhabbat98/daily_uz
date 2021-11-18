@@ -1,11 +1,15 @@
 const {selectExpenses, selectExpenseItems} = require("./module")
-const {token, check} = require("../settings/jwt")
+const { token, check } = require( "../settings/jwt" )
+const { promises } = require( 'stream' );
+const {GraphQLUpload} = require( 'graphql-upload' );
+
 const resolvers = {
   
     Query: {
         expenses: () => selectExpenses(),
         expenseItems:()=>selectExpenseItems()
     },
+    Upload: GraphQLUpload,
     Expense: {
         id: expense => expense.expense_id,
         name: expense => expense.expense_name,
@@ -20,7 +24,15 @@ const resolvers = {
     },
    
     Mutation: {
-     
+        imageUpload: async(_, {file}) =>
+        {
+            const { createReadStream, filename, mimetype, encoding } = await file;
+            const stream = createReadStream();
+            const out = require( 'fs' ).createWriteStream( 'local-file-output.txt' );
+            stream.pipe(out);
+            await promises.finished( out );
+            return { filename, mimetype, encoding };
+        },
         addExpense: async(_, {name, image},token)=> {
            console.log(token, name, image)
         },

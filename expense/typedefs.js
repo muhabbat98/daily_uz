@@ -1,9 +1,15 @@
-const { gql } = require( 'apollo-server' );
+const { gql } = require( 'apollo-server-express' );
 
 const typeDefs = gql`
+  scalar Upload
   extend type Query {
       expenses:[Expense!]!
       expenseItems(id:Int): [ExpenseItem]
+  }
+  type Image {
+    filename: String!
+    mimetype: String!
+    encoding: String!
   }
   type Expense{
       id:Int!,
@@ -20,7 +26,7 @@ const typeDefs = gql`
   extend type Mutation{
       addExpense(name:String, image:String):Expense
       addExpenseItem(item:String, cost:String, date:String):ExpenseItem
-
+      imageUpload(file:Upload!):Image
     #   deleteUser(userId:Int):String
   }
 `;
