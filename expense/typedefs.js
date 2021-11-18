@@ -1,0 +1,29 @@
+const { gql } = require( 'apollo-server' );
+
+const typeDefs = gql`
+  extend type Query {
+      expenses:[Expense!]!
+      expenseItems(id:Int): [ExpenseItem]
+  }
+  type Expense{
+      id:Int!,
+      name:String!
+      image:String
+      items:[ExpenseItem]
+  }
+   type ExpenseItem{
+      id:Int!,
+      item:String!
+      cost:String
+      date:String
+  }
+  extend type Mutation{
+      addExpense(name:String, image:String):Expense
+      addExpenseItem(item:String, cost:String, date:String):ExpenseItem
+
+    #   deleteUser(userId:Int):String
+  }
+`;
+module.exports = {
+     typeDefs
+ }
