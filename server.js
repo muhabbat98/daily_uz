@@ -1,8 +1,11 @@
 const express = require('express');
 const { ApolloServer } = require( 'apollo-server-express' );
+
+
 const {
   GraphQLUpload,
-  graphqlUploadExpress, // A Koa implementation is also exported.
+  graphqlUploadExpress,
+  Upload, // A Koa implementation is also exported.
 } = require('graphql-upload');
 // const { promises } = require( 'stream' );
 
@@ -18,7 +21,11 @@ const modules = [
 
 async function startServer() {
   const server = new ApolloServer({
-    modules,
+    modules: [
+      users,
+      expense
+    ],
+    uploads:false,
     context: ( { req } ) =>
       {
         console.log(req.headers)
@@ -32,7 +39,7 @@ async function startServer() {
   const app = express();
 
   // This middleware should be added before calling `applyMiddleware`.
-  app.use(graphqlUploadExpress());
+  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 
   server.applyMiddleware({ app });
 

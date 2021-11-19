@@ -9,7 +9,7 @@ const resolvers = {
         expenses: () => selectExpenses(),
         expenseItems:()=>selectExpenseItems()
     },
-    Upload: GraphQLUpload,
+    // Upload: GraphQLUpload,
     Expense: {
         id: expense => expense.expense_id,
         name: expense => expense.expense_name,
