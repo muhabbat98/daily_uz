@@ -1,6 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require( 'apollo-server-express' );
-
+import { ApolloServerPluginUsageReporting } from "apollo-server-core";
 
 const {
   GraphQLUpload,
@@ -25,6 +25,11 @@ async function startServer() {
       users,
       expense
     ],
+    plugins: [
+    ApolloServerPluginUsageReporting({
+      sendVariableValues: { all: true },
+    }),
+  ],
     uploads:false,
     context: ( { req } ) =>
       {
