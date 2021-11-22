@@ -1,4 +1,5 @@
-const express = require('express');
+const express = require( 'express' );
+const cors = require('cors')
 const { ApolloServer } = require( 'apollo-server-express' );
 
 const {
@@ -34,6 +35,7 @@ async function startServer() {
   const app = express();
 
   // This middleware should be added before calling `applyMiddleware`.
+  app.use(cors())
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 
   server.applyMiddleware({ app });
