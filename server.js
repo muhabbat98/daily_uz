@@ -1,6 +1,5 @@
 const express = require('express');
 const { ApolloServer } = require( 'apollo-server-express' );
-import { ApolloServerPluginUsageReporting } from "apollo-server-core";
 
 const {
   GraphQLUpload,
@@ -8,29 +7,20 @@ const {
   Upload, // A Koa implementation is also exported.
 } = require('graphql-upload');
 // const { promises } = require( 'stream' );
-
-const users = require( "./users" )
-const expense = require("./expense")
+const typeDefs = require( './typeDefs/main' )
+const resolvers = require('./resolvers/main')
+// const users = require( "./users" )
+// const expense = require("./expense")
 
 const PORT = process.env.PORT || 4000
 
-const modules = [
-  users,
-  expense
-]
 
 async function startServer() {
   const server = new ApolloServer({
-    modules: [
-      users,
-      expense
-    ],
-    plugins: [
-    ApolloServerPluginUsageReporting({
-      sendVariableValues: { all: true },
-    }),
-  ],
-    uploads:false,
+   
+    typeDefs: typeDefs,
+    resolvers:resolvers,
+  
     context: ( { req } ) =>
       {
         console.log(req.headers)

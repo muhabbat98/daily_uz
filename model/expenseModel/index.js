@@ -1,4 +1,4 @@
-const { ModuleSingle, ModuleArr } = require( '../module/pool' )
+const { ModuleSingle, ModuleArr } = require( '../../module/pool' )
 
 const CREATE_EXPENSE = "INSERT INTO expense(expense_name, image_id) VALUES($1, $2)RETURNING *"
 const CREATE_EXPENSE_ITEM = "INSERT INTO expense_item(expense_id, item_name, cost, buyed_at ) VALUES($1, $2, $3, $4)RETURNING *"

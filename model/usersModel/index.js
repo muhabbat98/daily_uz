@@ -1,4 +1,4 @@
-const { ModuleSingle, ModuleArr } = require( '../module/pool' )
+const { ModuleSingle, ModuleArr } = require( '../../module/pool' )
 
 const CREATE_USER = "INSERT INTO users(username, password) VALUES($1, crypt($2,gen_salt('bf')))RETURNING user_id, username"
 const USERS = "SELECT username, user_id FROM users"
