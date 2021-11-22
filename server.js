@@ -35,10 +35,10 @@ async function startServer() {
   const app = express();
 
   // This middleware should be added before calling `applyMiddleware`.
-  app.use(cors())
+  app.use()
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, path:'/', cors:true });
 
   await new Promise(()=> app.listen({ port:PORT }));
 
