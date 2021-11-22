@@ -1,7 +1,7 @@
 const { gql } = require( 'apollo-server-express' );
 
 const typeDefs = gql`
-  scalar Upload
+  # scalar Upload
   extend type Query {
       expenses:[Expense!]!
       expenseItems(id:Int): [ExpenseItem]
