@@ -5,8 +5,9 @@ const { ApolloServer } = require( 'apollo-server-express' );
 const {
   GraphQLUpload,
   graphqlUploadExpress,
-  Upload, // A Koa implementation is also exported.
-} = require('graphql-upload');
+  Upload
+} = require( 'graphql-upload' );
+
 const typeDefs = require( './typeDefs/main' )
 const resolvers = require('./resolvers/main')
 
@@ -19,13 +20,13 @@ async function startServer() {
    
     typeDefs: typeDefs,
     resolvers:resolvers,
-    
     context: ( { req } ) =>
       {
-        console.log(req.headers)
+        // console.log(req.headers)
         const token = req.headers.auth || ""
         return token
-      }
+    },
+    uploads: false
   });
 
   await server.start();

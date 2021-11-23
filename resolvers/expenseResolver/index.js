@@ -26,7 +26,7 @@ const resolvers = {
     Mutation: {
         imageUpload: async(_, {file}) =>
         {
-            console.log("file ",file)
+            console.log("file ", await file)
             const { createReadStream, filename, mimetype, encoding } = await file;
             const stream = createReadStream();
             const out = require( 'fs' ).createWriteStream( 'local-file-output.txt' );

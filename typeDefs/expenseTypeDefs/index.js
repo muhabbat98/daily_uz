@@ -1,5 +1,5 @@
 const { gql } = require( 'apollo-server-express' );
-
+const {GraphQLUpload} = require( 'graphql-upload' );
 const typeDefs = gql`
   scalar Upload
   extend type Query {
@@ -26,7 +26,7 @@ const typeDefs = gql`
   extend type Mutation{
       addExpense(name:String, image:String):Expense
       addExpenseItem(item:String, cost:String, date:String):ExpenseItem
-      imageUpload(file:Upload!):Image
+      imageUpload(file:Upload):Image
       deleteUser(userId:Int):String
   }
 `;
