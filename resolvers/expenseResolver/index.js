@@ -69,7 +69,7 @@ const resolvers = {
       {
         const isUser = check( token )
         const row = await addExpenseItem(expenseId, item, cost, date )
-  
+        console.log(row)
         return row
       }
       catch ( err )
