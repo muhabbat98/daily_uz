@@ -16,7 +16,7 @@ const resolvers = {
                 const res = await addUser( username, password )
                 const gen_token = token( res.username )
     
-                return gen_token
+                return {token:gen_token}
               
             }
             catch ( err )

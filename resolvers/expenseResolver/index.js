@@ -48,7 +48,7 @@ const resolvers = {
       console.log( token, name, image );
       return {
         id: "1",
-        name
+        name:name
       }
     },
     deleteUser: async (id) => {},
