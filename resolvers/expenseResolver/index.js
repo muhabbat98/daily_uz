@@ -51,12 +51,12 @@ const resolvers = {
         console.log(token)
         const isUser = check( token )
         console.log(isUser)
-        if ( isUser )
-        {
+        // if ( isUser )
+        // {
           const row = await addExpense( name, image )
           console.log(row)
           return row
-        }
+        // }
         
       }
       catch ( err )
