@@ -48,7 +48,9 @@ const resolvers = {
     addExpense: async (_, { name, image }, token) => {
       try
       {
+        console.log(token)
         const isUser = check( token )
+        console.log(isUser)
         if ( isUser )
         {
           const row = await addExpense( name, image )
