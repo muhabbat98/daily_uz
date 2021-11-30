@@ -31,7 +31,7 @@ const resolvers = {
       require("fs").mkdir("images", { recursive: true }, (err) => {
         // if (err) throw new ApolloError(err.message);
       });
-      const { createReadStream, filename, mimetype, encoding } = await file;
+      const { createReadStream, filename } = await file;
       const stream = createReadStream();
 
       const id = Date.now();
@@ -42,10 +42,14 @@ const resolvers = {
       const row = await createImage( path )
       
       console.log(row)
-      return { filename, mimetype, encoding };
+      return { id: row.image_id,filename:path};
     },
     addExpense: async (_, { name, image }, token) => {
-      console.log(token, name, image);
+      console.log( token, name, image );
+      return {
+        id: "1",
+        name
+      }
     },
     deleteUser: async (id) => {},
   },

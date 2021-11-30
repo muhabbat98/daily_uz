@@ -7,9 +7,8 @@ const typeDefs = gql`
       expenseItems(id:Int): [ExpenseItem]
   }
   type Image {
+    id:String!
     filename: String!
-    mimetype: String!
-    encoding: String!
   }
   type Expense{
       id:Int!,
