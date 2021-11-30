@@ -18,7 +18,7 @@ const addExpenseItem = ( expenseId, itemName, cost, buyedAt) => ModuleSingle( CR
 const createImage = (path)=>ModuleSingle(CREATE_IMAGE, path)
 
 const selectExpenses = () => ModuleArr( EXPENSES )
-const selectExpenseItems = ( id ) => id ? ModuleArr( EXPENSE_ITEM ) : ModuleArr( EXPENSE_ITEMS )
+const selectExpenseItems = ( id ) => id ? ModuleArr( EXPENSE_ITEM, id ) : ModuleArr( EXPENSE_ITEMS )
 
 // const deleteUser = ( id ) => ModuleSingle( DELETE_USER, id )
 
