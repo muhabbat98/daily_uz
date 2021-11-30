@@ -26,7 +26,7 @@ async function startServer() {
         const token = req.headers.auth || ""
         return token
     },
-    uploads: false
+    // uploads: false
   });
 
   await server.start();

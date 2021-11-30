@@ -1,6 +1,7 @@
 const {
   selectExpenses,
   selectExpenseItems,
+  createImage
 } = require("../../model/expenseModel");
 const { token, check } = require("../../settings/jwt");
 const { promises } = require("stream");
@@ -28,18 +29,19 @@ const resolvers = {
   Mutation: {
     imageUpload: async (_, { file }) => {
       require("fs").mkdir("images", { recursive: true }, (err) => {
-        if (err) throw new ApolloError(err.message);
+        // if (err) throw new ApolloError(err.message);
       });
-
       const { createReadStream, filename, mimetype, encoding } = await file;
       const stream = createReadStream();
 
       const id = Date.now();
       const path = `images/${id}-${filename}`;
-
       const out = require("fs").createWriteStream(path);
-      stream.pipe(out);
-      await promises.finished(out);
+      stream.pipe( out );
+
+      const row = await createImage( path )
+      
+      console.log(row)
       return { filename, mimetype, encoding };
     },
     addExpense: async (_, { name, image }, token) => {
