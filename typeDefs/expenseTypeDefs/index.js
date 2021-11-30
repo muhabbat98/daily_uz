@@ -8,7 +8,7 @@ const typeDefs = gql`
   }
   type Image {
     id:String!
-    filename: String!
+    filename: String!     
   }
   type Expense{
       id:Int!,
