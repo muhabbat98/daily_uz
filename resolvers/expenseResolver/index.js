@@ -45,10 +45,10 @@ const resolvers = {
       console.log(row)
       return { id: row.image_id,filename:path};
     },
-    addExpense: async (_, { name, image }, token) => {
+    addExpense: async (_, { name, image }, {token}) => {
       try
       {
-        console.log(token)
+        console.log("component token",token)
         const isUser = check( token )
         console.log(isUser)
         // if ( isUser )
