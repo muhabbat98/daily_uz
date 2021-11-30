@@ -2,7 +2,8 @@ const {
   selectExpenses,
   selectExpenseItems,
   createImage,
-  addExpense
+  addExpense,
+  addExpenseItem
 } = require("../../model/expenseModel");
 const { token, check } = require("../../settings/jwt");
 const { promises } = require("stream");
@@ -42,27 +43,35 @@ const resolvers = {
 
       const row = await createImage( path )
       
-      console.log(row)
+      // console.log(row)
       return { id: row.image_id,filename:path};
     },
     addExpense: async (_, { name, image }, {token}) => {
       try
       {
-        console.log("component token",token)
         const isUser = check( token )
-        console.log(isUser)
-        // if ( isUser )
-        // {
-          const row = await addExpense( name, image )
-          console.log(row)
-          return row
-        // }
-        
+        const row = await addExpense( name, image )
+  
+        return row
       }
       catch ( err )
       {
         console.log(err)
       }
+    },
+    addExpenseItem: async (_, {expenseId, item, cost, date},{token}) =>{
+      try
+      {
+        const isUser = check( token )
+        const row = await addExpenseItem(expenseId, item, cost, date )
+  
+        return row
+      }
+      catch ( err )
+      {
+        console.log(err)
+      }
+      
     },
     deleteUser: async (id) => {},
   },

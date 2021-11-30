@@ -20,12 +20,7 @@ async function startServer() {
    
     typeDefs: typeDefs,
     resolvers:resolvers,
-    context: ( { req } ) =>
-    {
-        console.log("SERVER TOKEN",req.headers.token)
-        const token = req.headers.token || ""
-        return {token}
-    },
+    context: ( { req } ) =>({token:req.headers.token || ""})
     // uploads: false
   });
 

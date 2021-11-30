@@ -23,8 +23,8 @@ const typeDefs = gql`
       date:String
   }
   extend type Mutation{
-      addExpense(name:String, image:String):Expense
-      addExpenseItem(item:String, cost:String, date:String):ExpenseItem
+      addExpense(name:String, image:Int):Expense
+      addExpenseItem(expenseId:Int,item:String, cost:String, date:String):ExpenseItem
       imageUpload(file:Upload):Image
       deleteUser(userId:Int):String
   }
