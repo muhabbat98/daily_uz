@@ -1,6 +1,7 @@
 const { gql } = require( 'apollo-server-express' );
 
 const typeDefs = gql`
+scalar Token
  type Query {
       users:[User!]!
   }
@@ -10,7 +11,7 @@ const typeDefs = gql`
       password:String
   }
   type Mutation{
-      addUser(username:String, password:String):String
+      addUser(username:String, password:String):Token
       deleteUser(userId:Int):String
   }
 `;

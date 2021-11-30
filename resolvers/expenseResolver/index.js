@@ -1,7 +1,8 @@
 const {
   selectExpenses,
   selectExpenseItems,
-  createImage
+  createImage,
+  addExpense
 } = require("../../model/expenseModel");
 const { token, check } = require("../../settings/jwt");
 const { promises } = require("stream");
@@ -45,10 +46,20 @@ const resolvers = {
       return { id: row.image_id,filename:path};
     },
     addExpense: async (_, { name, image }, token) => {
-      console.log( token, name, image );
-      return {
-        id: "1",
-        name:name
+      try
+      {
+        const isUser = check( token )
+        if ( isUser )
+        {
+          const row = await addExpense( name, image )
+          console.log(row)
+          return row
+        }
+        
+      }
+      catch ( err )
+      {
+        console.log(err)
       }
     },
     deleteUser: async (id) => {},

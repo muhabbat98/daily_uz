@@ -13,8 +13,8 @@ const EXPENSE_ITEM = "SELECT * FROM expense_item WHERE expense_id=$1"
 // const DELETE_USER = "DELETE FROM users WHERE user_id=$1"
 
 
-const addExpense = ( username, password ) => ModuleSingle( CREATE_EXPENSE, username, password )
-const addExpenseItem = ( username, password ) => ModuleSingle( CREATE_EXPENSE_ITEM, username, password )
+const addExpense = ( name, id ) => ModuleSingle( CREATE_EXPENSE,name, id )
+const addExpenseItem = ( expenseId, itemName, cost, buyedAt) => ModuleSingle( CREATE_EXPENSE_ITEM, expenseId, itemName, cost, buyedAt )
 const createImage = (path)=>ModuleSingle(CREATE_IMAGE, path)
 
 const selectExpenses = () => ModuleArr( EXPENSES )

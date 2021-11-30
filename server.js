@@ -22,8 +22,7 @@ async function startServer() {
     resolvers:resolvers,
     context: ( { req } ) =>
       {
-        console.log("TOKEN",req.headers.token)
-        const token = req.headers.auth || ""
+        const token = req.headers.token || ""
         return token
     },
     // uploads: false
