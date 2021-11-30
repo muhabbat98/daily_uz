@@ -22,9 +22,9 @@ async function startServer() {
     resolvers:resolvers,
     context: ( { req } ) =>
     {
-        console.log("SERVER TOKEN",req.headers)
+        console.log("SERVER TOKEN",req.headers.token)
         const token = req.headers.token || ""
-        return token
+        return {token}
     },
     // uploads: false
   });
