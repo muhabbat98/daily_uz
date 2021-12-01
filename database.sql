@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS expense CASCADE;
 create table expense (
     expense_id serial not null unique,
     expense_name varchar(32) unique not null,
+    user_id int references users(user_id),
     image_id int references images(image_id)
 );
 
@@ -25,7 +26,6 @@ create table expense (
 DROP TABLE IF EXISTS expense_item;
 create table expense_item (
     expense_item_id serial not null unique,
-    user_id int references users(user_id),
     expense_id int references expense(expense_id),
     item_name varchar(64)not null,
     cost numeric(6,3) not null,

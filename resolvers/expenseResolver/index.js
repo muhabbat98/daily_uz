@@ -51,12 +51,11 @@ const resolvers = {
       // console.log(row)
       return { id: row.image_id,filename:path};
     },
-    addExpense: async (_, { name, image }, {token}) => {
+    addExpense: async (_, { name, image, userId }, {token}) => {
       try
       {
         const isUser = check( token )
-        const row = await addExpense( name, image )
-  
+        const row = await addExpense( name, image, userId )
         return row
       }
       catch ( err )
