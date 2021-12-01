@@ -30,9 +30,9 @@ async function startServer() {
 
  
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
-  app.use('/images', express.static(__dirname + '/images'));
+  
   server.applyMiddleware({ app, path:'/', cors:true });
-
+  app.use('/images', express.static(__dirname + '/images'));
   await new Promise(()=> app.listen({ port:PORT }));
 
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
