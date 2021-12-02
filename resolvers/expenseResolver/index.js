@@ -23,7 +23,7 @@ const resolvers = {
   Expense: {
     id: (expense) => expense.expense_id,
     name: (expense) => expense.expense_name,
-    image: (expense) => expense.image_id,
+    image: (expense) => expense.path,
     items: (expense) => selectExpenseItems(expense.expense_id),
   },
   ExpenseItem: {
@@ -51,11 +51,12 @@ const resolvers = {
       // console.log(row)
       return { id: row.image_id,filename:path};
     },
-    addExpense: async (_, { name, image, userId }, {token}) => {
+    addExpense: async (_, { name, image }, {token}) => {
       try
       {
         const isUser = check( token )
-        const row = await addExpense( name, image, userId )
+        console.log(isUser)
+        const row = await addExpense( name, image, isUser )
         return row
       }
       catch ( err )

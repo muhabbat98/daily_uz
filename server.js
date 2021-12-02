@@ -29,7 +29,8 @@ async function startServer() {
   const app = express();
 
   app.use('/images', express.static(path.join(__dirname, "/images")));
-  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+  app.use( graphqlUploadExpress( { maxFileSize: 10000000, maxFiles: 10 } ) );
+  
   app.use(cors())
   server.applyMiddleware({ app, path:'/app', cors:true });
   
