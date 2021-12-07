@@ -17,7 +17,7 @@ const resolvers = {
       console.log( row )
       return row
     } ,
-    expenseItems: () => selectExpenseItems(),
+    expenseItems: (id) => selectExpenseItems(id),
   },
   Upload: GraphQLUpload,
   Expense: {
