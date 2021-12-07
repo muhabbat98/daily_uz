@@ -17,12 +17,7 @@ const resolvers = {
       console.log( row )
       return row
     } ,
-    expenseItems: async( id ) =>
-    {
-      console.log( id )
-      const res = await selectExpenseItems( id )
-      return res
-    },
+    expenseItems: ( _,{id} ) => selectExpenseItems( id ),
   },
   Upload: GraphQLUpload,
   Expense: {
