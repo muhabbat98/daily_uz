@@ -17,7 +17,12 @@ const resolvers = {
       console.log( row )
       return row
     } ,
-    expenseItems: (id) => selectExpenseItems(id),
+    expenseItems: async( id ) =>
+    {
+      console.log( id )
+      const res = await selectExpenseItems( id )
+      return res
+    },
   },
   Upload: GraphQLUpload,
   Expense: {
@@ -68,7 +73,6 @@ const resolvers = {
       {
         const isUser = check( token )
         const row = await addExpenseItem(expenseId, item, cost, date )
-        console.log("expense item",row)
         return row
       }
       catch ( err )
