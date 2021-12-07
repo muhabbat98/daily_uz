@@ -55,7 +55,6 @@ const resolvers = {
       try
       {
         const isUser = check( token )
-        console.log(isUser)
         const row = await addExpense( name, image, isUser&&isUser.id )
         return row
       }
@@ -69,7 +68,7 @@ const resolvers = {
       {
         const isUser = check( token )
         const row = await addExpenseItem(expenseId, item, cost, date )
-        console.log(row)
+        console.log("expense item",row)
         return row
       }
       catch ( err )
