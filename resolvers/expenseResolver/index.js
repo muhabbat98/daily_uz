@@ -37,7 +37,7 @@ const resolvers = {
     date: ( item ) =>{
       let date = moment(item.buyed_at).format("MMM Do YY")
       console.log(item.buyed_at, date)
-      return item.buyed_at
+      return date
     },
   },
 
