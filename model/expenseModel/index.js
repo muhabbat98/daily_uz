@@ -5,7 +5,7 @@ const CREATE_EXPENSE_ITEM = "INSERT INTO expense_item(expense_id, item_name, cos
 const CREATE_IMAGE ="INSERT INTO images(path) VALUES ($1) RETURNING *"
 
 // const EXPENSES = "SELECT * FROM expense e LEFT JOIN expense_item i ON e.expense_id= i.expense_id"
-const EXPENSES = "select e.expense_id,e.expense_name, m.path, i.expense_item_id, i.item_name, i.cost, i.buyed_at from expense e natural join images m left join expense_item i on e.expense_id=i.expense_id where  e.user_id=$1 "
+const EXPENSES = "select * from expense e natural join images m  where  e.user_id=$1 "
 
 const EXPENSE_ITEMS = "SELECT * FROM expense_item"
 const EXPENSE_ITEM = "SELECT * FROM expense_item WHERE expense_id=$1"
