@@ -5,7 +5,7 @@ const CREATE_EXPENSE_ITEM = "INSERT INTO expense_item(expense_id, item_name, cos
 const CREATE_IMAGE ="INSERT INTO images(path) VALUES ($1) RETURNING *"
 
 // const EXPENSES = "SELECT * FROM expense e LEFT JOIN expense_item i ON e.expense_id= i.expense_id"
-const EXPENSES = "select * from expense natural join users natural join images natural join expense_item"
+const EXPENSES = "select * from expense e natural join images left join expense_item i on e.expense_id=i.expense_id where e.user_id=$1 "
 
 const EXPENSE_ITEMS = "SELECT * FROM expense_item"
 const EXPENSE_ITEM = "SELECT * FROM expense_item WHERE expense_id=$1"
@@ -19,7 +19,7 @@ const addExpense = ( name, id, userId ) => ModuleSingle( CREATE_EXPENSE,name, id
 const addExpenseItem = ( expenseId, itemName, cost, buyedAt) => ModuleSingle( CREATE_EXPENSE_ITEM, expenseId, itemName, cost, buyedAt )
 const createImage = (path)=>ModuleSingle(CREATE_IMAGE, path)
 
-const selectExpenses = () => ModuleArr( EXPENSES )
+const selectExpenses = (id) => ModuleArr( EXPENSES, id )
 const selectExpenseItems = ( id ) => id ? ModuleArr( EXPENSE_ITEM, id ) : ModuleArr( EXPENSE_ITEMS )
 
 // const deleteUser = ( id ) => ModuleSingle( DELETE_USER, id )

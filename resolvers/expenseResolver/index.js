@@ -11,9 +11,10 @@ const { GraphQLUpload } = require("graphql-upload");
 
 const resolvers = {
   Query: {
-    expenses: async () =>
+    expenses: async (_,{}, {token}) =>
     {
-      const row = await selectExpenses()
+      const isUser = check(token)
+      const row = await selectExpenses(isUser&&isUser.id)
       console.log( row )
       return row
     } ,
