@@ -8,7 +8,7 @@ const {
 const { token, check } = require("../../settings/jwt");
 const { promises } = require("stream");
 const { GraphQLUpload } = require("graphql-upload");
-
+const moment = require('moment')
 const resolvers = {
   Query: {
     expenses: async (_,{}, {token}) =>
@@ -30,8 +30,15 @@ const resolvers = {
   ExpenseItem: {
     id: (item) => item.expense_item_id,
     item: (item) => item.item_name,
-    cost: (item) => item.cost,
-    date: (item) => item.buyed_at,
+    cost: ( item ) =>{
+      console.log(item.cost)
+      return item.cost
+    },
+    date: ( item ) =>{
+      let date = moment(item.buyed_at).format("MMM Do YY")
+      console.log(item.buyed_at, date)
+      return item.buyed_at
+    },
   },
 
   Mutation: {
