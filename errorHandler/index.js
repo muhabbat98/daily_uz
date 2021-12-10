@@ -1,5 +1,10 @@
-import { createError } from "apollo-errors";
+const { createError } = require( "apollo-errors" );
 
-export const AlreadyExist = createError( "AlreadyExist", { message: 'this username is already taken. Please choose another one or log in' } );
+const AlreadyExist = createError( "AlreadyExist", { message: 'this username is already taken. Please choose another one or log in' } );
 
-export const NotExist = createError("NotExist", {message:'this user is not registered in our webpage. please sign up'})
+const NotExist = createError("NotExist", {message:'this user is not registered in our webpage. please sign up'})
+
+module.exports = {
+    AlreadyExist,
+    NotExist
+}
