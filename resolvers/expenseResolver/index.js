@@ -28,10 +28,7 @@ const resolvers = {
   ExpenseItem: {
     id: (item) => item.expense_item_id,
     item: (item) => item.item_name,
-    cost: ( item ) =>{
-      console.log(item.cost)
-      return item.cost
-    },
+    cost: ( item ) => item.cost,
     date: ( item ) =>{
       let date = moment(item.buyed_at).format("MMM Do YY")
    

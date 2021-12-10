@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/subgraph": "^0.1.4",
+    "apollo-errors": "^1.9.0",
     "apollo-server": "^3.5.0",
     "apollo-server-express": "^3.5.0",
     "express": "^4.17.1",

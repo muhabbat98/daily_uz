@@ -1,5 +1,7 @@
 const {addUser, selectUsers, deleteUser, isUser } = require("../../model/usersModel")
-const {token, check} = require("../../settings/jwt")
+const { token, check } = require( "../../settings/jwt" )
+
+const {AlreadyExist, NotExist} = require('../../errorHandler')
 const resolvers = {
   
     Query: {
@@ -21,7 +23,7 @@ const resolvers = {
             }
             catch ( err )
             {
-                throw new Error("this username already taken")
+                throw new AlreadyExist
             }
         },
         isUser: async (_, {username, password}) =>{
@@ -36,13 +38,13 @@ const resolvers = {
                 }
                 else
                 {
-                    throw new Error("this user is not registered in our webpage. please sign up ")
+                    throw new NotExist
                 }
             }
             catch ( err )
             {
-                console.log( err )
-                return err
+                throw new NotExist
+           
             }
         },
         deleteUser: async(id) =>
