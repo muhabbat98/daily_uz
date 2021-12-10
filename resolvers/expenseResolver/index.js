@@ -6,7 +6,6 @@ const {
   addExpenseItem
 } = require("../../model/expenseModel");
 const { token, check } = require("../../settings/jwt");
-const { promises } = require("stream");
 const { GraphQLUpload } = require("graphql-upload");
 const moment = require('moment')
 const resolvers = {
@@ -15,7 +14,6 @@ const resolvers = {
     {
       const isUser = check(token)
       const row = await selectExpenses(isUser&&isUser.id)
-      console.log( row )
       return row
     } ,
     expenseItems: ( _,{id} ) => selectExpenseItems( id ),
@@ -36,7 +34,7 @@ const resolvers = {
     },
     date: ( item ) =>{
       let date = moment(item.buyed_at).format("MMM Do YY")
-      console.log(item.buyed_at, date)
+   
       return date
     },
   },

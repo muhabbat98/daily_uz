@@ -13,6 +13,7 @@ scalar Token
   type Mutation{
       addUser(username:String, password:String):Token
       deleteUser(userId:Int):String
+      isUser(username:String, password:String):Token
   }
 `;
 module.exports = {
