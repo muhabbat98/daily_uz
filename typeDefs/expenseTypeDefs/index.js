@@ -26,7 +26,8 @@ const typeDefs = gql`
       addExpense(name:String, image:Int, userId:Int):Expense
       addExpenseItem(expenseId:Int,item:String, cost:Int, date:String):ExpenseItem
       imageUpload(file:Upload):Image
-      deleteUser(userId:Int):String
+      deleteExpense(expenseId:Int):Expense
+      deleteExpenseItem(itemId:Int):ExpenseItem
   }
 `;
 module.exports = {

@@ -6,24 +6,23 @@ const CREATE_IMAGE ="INSERT INTO images(path) VALUES ($1) RETURNING *"
 
 // const EXPENSES = "SELECT * FROM expense e LEFT JOIN expense_item i ON e.expense_id= i.expense_id"
 const EXPENSES = "select * from expense e natural join images m  where  e.user_id=$1 "
-
 const EXPENSE_ITEMS = "SELECT * FROM expense_item"
 const EXPENSE_ITEM = "SELECT * FROM expense_item WHERE expense_id=$1"
-
 const SELECT_IMAGE =  "SELECT path FROM images WHERE image_id=$1"
 
 // const DELETE_USER = "DELETE FROM users WHERE user_id=$1"
+const DELETE_EXPENSE = "DELETE FROM expense WHERE expense_id=$1"
 
+const addExpense =              ( name, id, userId )                        => ModuleSingle( CREATE_EXPENSE,name, id, userId )
+const addExpenseItem =          ( expenseId, itemName, cost, buyedAt)       => ModuleSingle( CREATE_EXPENSE_ITEM, expenseId, itemName, cost, buyedAt )
+const createImage =             (path)                                      =>ModuleSingle(CREATE_IMAGE, path)
 
-const addExpense = ( name, id, userId ) => ModuleSingle( CREATE_EXPENSE,name, id, userId )
-const addExpenseItem = ( expenseId, itemName, cost, buyedAt) => ModuleSingle( CREATE_EXPENSE_ITEM, expenseId, itemName, cost, buyedAt )
-const createImage = (path)=>ModuleSingle(CREATE_IMAGE, path)
-
-const selectExpenses = (id) => ModuleArr( EXPENSES, id )
-const selectExpenseItems = ( id ) => id ? ModuleArr( EXPENSE_ITEM, id ) : ModuleArr( EXPENSE_ITEMS )
-const selectImage = (id) => ModuleSingle(SELECT_IMAGE, id)
+const selectExpenses =          (id)                                        => ModuleArr( EXPENSES, id )
+const selectExpenseItems =      ( id )                                      => id ? ModuleArr( EXPENSE_ITEM, id ) : ModuleArr( EXPENSE_ITEMS )
+const selectImage =             (id)                                        => ModuleSingle(SELECT_IMAGE, id)
 // const deleteUser = ( id ) => ModuleSingle( DELETE_USER, id )
 
+const deleteExpenseHandler =    (id)                                        => ModuleSingle(DELETE_EXPENSE, id)
 
 
 module.exports = {
@@ -32,5 +31,6 @@ module.exports = {
     createImage,
     selectExpenseItems,
     selectExpenses,
-    selectImage
+    selectImage,
+    deleteExpenseHandler
 }
