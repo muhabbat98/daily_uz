@@ -11,7 +11,7 @@ const EXPENSE_ITEM = "SELECT * FROM expense_item WHERE expense_id=$1"
 const SELECT_IMAGE =  "SELECT path FROM images WHERE image_id=$1"
 
 // const DELETE_USER = "DELETE FROM users WHERE user_id=$1"
-const DELETE_EXPENSE = "DELETE FROM expense WHERE expense_id=$1"
+const DELETE_EXPENSE = "DELETE FROM expense WHERE expense_id=$1 RETURNING *"
 
 const addExpense =              ( name, id, userId )                        => ModuleSingle( CREATE_EXPENSE,name, id, userId )
 const addExpenseItem =          ( expenseId, itemName, cost, buyedAt)       => ModuleSingle( CREATE_EXPENSE_ITEM, expenseId, itemName, cost, buyedAt )
