@@ -3,7 +3,8 @@ const {
   selectExpenseItems,
   createImage,
   addExpense,
-  addExpenseItem
+  addExpenseItem,
+  selectImage
 } = require("../../model/expenseModel");
 const { token, check } = require("../../settings/jwt");
 const { GraphQLUpload } = require("graphql-upload");
@@ -58,8 +59,12 @@ const resolvers = {
       try
       {
         const isUser = check( token )
-        const row = await addExpense( name, image, isUser&&isUser.id )
-        return row
+        const row = await addExpense( name, image, isUser && isUser.id )
+        console.log(row)
+        return {
+          ...row,
+          path: selectImage(row.image_id)
+        }
       }
       catch ( err )
       {
