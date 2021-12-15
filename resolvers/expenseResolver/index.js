@@ -63,7 +63,7 @@ const resolvers = {
         console.log(row)
         return {
           ...row,
-          path: selectImage(row.image_id)
+          path: (await selectImage(row.image_id)).path
         }
       }
       catch ( err )

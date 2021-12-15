@@ -10,7 +10,7 @@ const EXPENSES = "select * from expense e natural join images m  where  e.user_i
 const EXPENSE_ITEMS = "SELECT * FROM expense_item"
 const EXPENSE_ITEM = "SELECT * FROM expense_item WHERE expense_id=$1"
 
-const SELECT_IMAGE =  "SELECT filename FROM images WHERE image_id=$1"
+const SELECT_IMAGE =  "SELECT path FROM images WHERE image_id=$1"
 
 // const DELETE_USER = "DELETE FROM users WHERE user_id=$1"
 
