@@ -12,6 +12,10 @@ const SELECT_IMAGE =  "SELECT path FROM images WHERE image_id=$1"
 
 // const DELETE_USER = "DELETE FROM users WHERE user_id=$1"
 const DELETE_EXPENSE = "DELETE FROM expense WHERE expense_id=$1 RETURNING *"
+const DELETE_EXPENSE_ITEM = "DELETE FROM expense_item WHERE expense_id=$1 RETURNING *"
+const DELETE_ITEM = "DELETE FROM expense_item WHERE expense_item_id=$1 RETURNING *"
+
+
 
 const addExpense =              ( name, id, userId )                        => ModuleSingle( CREATE_EXPENSE,name, id, userId )
 const addExpenseItem =          ( expenseId, itemName, cost, buyedAt)       => ModuleSingle( CREATE_EXPENSE_ITEM, expenseId, itemName, cost, buyedAt )
@@ -23,7 +27,8 @@ const selectImage =             (id)                                        => M
 // const deleteUser = ( id ) => ModuleSingle( DELETE_USER, id )
 
 const deleteExpenseHandler =    (id)                                        => ModuleSingle(DELETE_EXPENSE, id)
-
+const deleteItemWithExpense =   (id)                                        => ModuleSingle(DELETE_EXPENSE_ITEM, id)
+const deleteItemWithId=         (id)                                        => ModuleSingle(DELETE_ITEM, id)
 
 module.exports = {
     addExpense,
@@ -32,5 +37,7 @@ module.exports = {
     selectExpenseItems,
     selectExpenses,
     selectImage,
-    deleteExpenseHandler
+    deleteExpenseHandler,
+    deleteItemWithExpense,
+    deleteItemWithId
 }

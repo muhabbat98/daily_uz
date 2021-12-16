@@ -5,7 +5,9 @@ const {
   addExpense,
   addExpenseItem,
   selectImage,
-  deleteExpenseHandler
+  deleteExpenseHandler,
+  deleteItemWithExpense,
+  deleteItemWithId
 } = require("../../model/expenseModel");
 const { token, check } = require("../../settings/jwt");
 const { GraphQLUpload } = require("graphql-upload");
@@ -87,10 +89,14 @@ const resolvers = {
     },
     deleteExpense: async ( _, { expenseId } ) =>
     {
+      const itemRes = await deleteItemWithExpense(expenseId)
       const res = await deleteExpenseHandler( expenseId )
-      console.log( res )
       return res
     },
+    deleteExpenseItem: async ( _, { itemId } ) =>{
+      const res = await deleteItemWithId( itemId )
+      return res
+    }
   },
 };
 
