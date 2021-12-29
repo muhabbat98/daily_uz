@@ -1,5 +1,5 @@
 const { gql } = require( 'apollo-server-express' );
-const {GraphQLUpload} = require( 'graphql-upload' );
+
 const typeDefs = gql`
   scalar Upload
   extend type Query {
