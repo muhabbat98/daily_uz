@@ -6,8 +6,8 @@ const resolvers = {
     monthlyExpenses: async(_,{month},{token}) =>{
       try{
         let user = check( token )
-        console.log( user )
-        const expense = await monthlyExpenses()
+        
+        const expense = await monthlyExpenses(user.id)
         console.log(month, expense, token)
         return expense
       }
