@@ -1,11 +1,12 @@
 
 const { token, check } = require("../../settings/jwt");
-
+const {monthlyExpenses} = require("../../model/statisticalModel")
 const resolvers = {
   Query: {
-    monthlyExpenses: (_,{month}) =>{
-      console.log(month)
-      return []
+    monthlyExpenses: async(_,{month}) =>{
+      const expense = await monthlyExpenses()
+      console.log(month, expense)
+      return expense
     }
   },
   MonthExpense: {
