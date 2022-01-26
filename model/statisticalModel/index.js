@@ -1,9 +1,9 @@
 const { ModuleSingle, ModuleArr } = require( '../../module/pool' );
 
-const EXPENSE_MONTHLY = "select i.expense_id, SUM(i.cost), e.expense_name from expense_item i natural join expense e WHERE date_part('month',i.buyed_at) = date_part('month',current_date) AND e.user_id=$1 group by i.expense_id, e.expense_name;";
+const EXPENSE_MONTHLY = "select e.expense_id, e.expense_name, e.expense_id,  ARRAY(select CONCAT('{over_all:',SUM(i.cost),',items:',Array(select '{name:'||i.item_name||' cost:'||i.cost||' buyed_at:'||i.buyed_at||'}' from expense_item i where e.expense_id=i.expense_id) ,'}') from expense_item i where e.expense_id=i.expense_id GROUP BY i.expense_id, e.expense_id) from expense e Where e.user_id = $1";
 
-const monthlyExpenses = (userId) => ModuleArr( EXPENSE_MONTHLY, userId );
+const filteredExpenses = (userId) => ModuleArr( EXPENSE_MONTHLY, userId );
 
 module.exports = {
-    monthlyExpenses
+    filteredExpenses
 }
