@@ -6,7 +6,8 @@ const resolvers = {
     yearlyExpenses: async(_,{year},{token}) =>{
       try{
         let user = check( token )        
-        const expense = await filteredExpenses(user.id, year)
+        const expense = await filteredExpenses( user.id, year )
+        console.log(expense)
         return expense
       }
       catch ( err )
