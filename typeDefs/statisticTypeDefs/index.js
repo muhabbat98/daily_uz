@@ -7,7 +7,7 @@ const typeDefs = gql`
   }
   type YearExpense{
     id:Int,
-    month:String
+    name:String
     expenses:[MonthExpense]
   }
   type MonthExpense{

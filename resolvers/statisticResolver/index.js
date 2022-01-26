@@ -6,8 +6,7 @@ const resolvers = {
     yearlyExpenses: async(_,{year},{token}) =>{
       try{
         let user = check( token )        
-        const expense = await filteredExpenses(user.id)
-        console.log(year, expense, token)
+        const expense = await filteredExpenses(user.id, year)
         return expense
       }
       catch ( err )
@@ -17,6 +16,14 @@ const resolvers = {
       
     }
   },
+  YearExpense: {
+    id: global => global.expense_id,
+    name: global => global.expense_name,
+    expenses:global=>global.array
+  },
+  MonthExpense: {
+    id:global=>console.log(global)
+  }
  
 };
 
