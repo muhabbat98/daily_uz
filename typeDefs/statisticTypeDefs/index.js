@@ -6,9 +6,9 @@ const typeDefs = gql`
       yearlyExpenses(year:Int):[YearExpense]
   }
   type YearExpense{
-    id:int,
+    id:Int,
     month:String
-    expenses:[monthlyExpenses]
+    expenses:[MonthExpense]
   }
   type MonthExpense{
     id:Int,

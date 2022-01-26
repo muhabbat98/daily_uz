@@ -17,10 +17,7 @@ const resolvers = {
       
     }
   },
-  MonthExpense: {
-    id: global => global.expense_id,
-    name:global=>global.expense_name,
-  }
+ 
 };
 
 module.exports = {
